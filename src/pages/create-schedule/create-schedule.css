@@ -1,0 +1,312 @@
+.create-schedule-container {
+  min-height: -webkit-fill-available;
+  height: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.create-schedule-container .create-title {
+  font-size: 1.2rem;
+  margin-left: 28px;
+  font-weight: bolder;
+  color: #686767;
+  height: 24px;
+  
+}
+
+.create-schedule-container h1 {
+  font-size: 1.45rem;
+  position: relative;
+  bottom: 5px;
+  z-index: 1000;
+}
+
+.create-schedule-container .teste h2 {
+  animation: show .5s;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.create-schedule-container .main-row {
+  display: flex;
+  justify-content: space-evenly;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+.create-schedule-container .top-card {
+  
+  height: auto !important;
+  margin-top: 10px !important;
+}
+
+.create-schedule-container .top-card img {
+  animation: show .3s;
+}
+
+.create-schedule-container .main-row .calendar-day,
+.create-schedule-container .main-row .calendar-hours {
+  background-image: url(../../assets/mini-calendar.png);
+  height: 90px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: center;
+}
+
+.create-schedule-container .main-row .calendar-day {
+  border: 1px solid transparent;
+  width: 100%;
+}
+
+.create-schedule-container .main-row .calendar-hours {
+  width: 100%;
+  border: 1px solid transparent;
+}
+
+.create-schedule-container .main-row .calendar-hours .hours {
+  font-size: 1.1rem;
+  margin-top: 9px;
+  display: inline-block;
+  color: rgb(70, 70, 70);
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+
+.create-schedule-container label {
+  max-width: 90px;
+  height: 90px;
+}
+
+.create-schedule-container .main-row .calendar-day p,
+.create-schedule-container .main-row .calendar-hours p {
+  color: white;
+  font-size: 0.9rem;
+  margin: 1.3rem 0 0 0;
+}
+
+.create-schedule-container .main-row .month,
+.create-schedule-container .main-row .day {
+  color: rgb(70, 70, 70);
+  line-height: 15px;
+}
+
+.create-schedule-container .main-row .month {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.create-schedule-container .main-row .day {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: rgb(70, 70, 70);
+}
+
+.create-schedule-container .date-picker {
+  display: none;
+}
+
+.create-schedule-container .react-datepicker-wrapper {
+  position: relative;
+  bottom: 22px;
+}
+
+.react-datepicker__time-list-item--disabled {
+  display: none;
+}
+
+.create-schedule-container .main-row .group {
+  max-width: 20%;
+  margin-top: 15px;
+}
+
+.create-schedule-container .schedule-group-cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 0 10px;
+}
+
+.create-schedule-container .schedule-card {
+  width: 23%;
+  padding: 3px 0;
+  border-radius: 10px;
+  transition: ease .2s;
+  margin-bottom: 6px;
+
+}
+
+.gray {
+  background-color: #9c9c9c;
+}
+
+.create-schedule-container .schedule-group-cards .selected {
+  background-color: #cbe5e1
+}
+
+.create-schedule-container .schedule-card img {
+  width: 80%;
+  display: block;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: -1px 1px 3px black;
+}
+
+.create-schedule-container .schedule-group-cards .schedule-card p {
+  text-align: center;
+  font-weight: 500;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+.create-schedule-container .notes {
+  background-color: white;
+}
+
+.create-schedule-container .notes textarea {
+  height: 80px;
+  font-size: 1.2rem;
+}
+
+.create-schedule-container form {
+  position: relative;
+  margin-top: 15px;
+}
+
+.create-schedule-container .notes-title {
+  background-color: #fff;
+  position: absolute;
+  top: -9px;
+  left: 40px;
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0 5px;
+  font-style: italic;
+  color: #686767;
+  z-index: 3;
+}
+
+.create-schedule-container .green-button {
+  margin: 20px auto !important;
+}
+
+.create-schedule-container .error {
+  color: red;
+  text-align: center;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+
+@media (min-width: 341px) {
+  .create-schedule-container label {
+    width: 90px;
+  }
+}
+
+@media (max-width: 340px) {
+  .create-schedule-container .h1-title {
+    font-size: 1.2rem;
+  }
+
+  .create-schedule-container label {
+    width: 90px;
+  }
+
+  .create-schedule-container .notes-title {
+    font-size: 0.9rem;
+  }
+
+  .create-schedule-container .main-row .calendar-day, .create-schedule-container .main-row .calendar-hours  {
+    width: 90%;
+  }
+
+  .create-schedule-container .main-row .calendar-hours .hours {
+    margin-top: 4px;
+    font-size: 1rem;
+  }
+
+  .create-schedule-container .main-row {
+    display: flex;
+    justify-content: space-evenly;
+    height: 80px;
+    margin-bottom: 0;
+  }
+
+  .create-schedule-container .main-row .calendar-day p,
+  .create-schedule-container .main-row .calendar-hours p {
+    color: white;
+    font-size: 0.9rem;
+  }
+  .create-schedule-container .main-row .month {
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: -25px;
+  }
+
+  .create-schedule-container .main-row .day {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bolder;
+    color: rgb(70, 70, 70);
+    margin-top: -3px;
+  }
+
+  .create-schedule-container .notes textarea {
+    height: 55px;
+    font-size: 1rem;
+  }
+
+  .create-schedule-container .green-button {
+    height: 35px;
+  }
+}
+
+/* @media (max-width: 300px){
+  .create-schedule-container .schedule-card {
+    width: 25%;
+  }
+
+  .create-schedule-container .schedule-group-cards .schedule-card p {
+    font-size: 0.72rem;
+  }
+}
+
+@media (min-width: 390px) {
+  .create-schedule-container .schedule-group-cards {
+    margin: 0 3%;
+  }
+  .create-schedule-container .schedule-group-cards .schedule-card img {
+    width: 74%;
+  }
+}
+
+@media (min-width: 416px) {
+  .create-schedule-container .schedule-group-cards .schedule-card {
+    height: 90px;
+  }
+}
+
+@media (min-width: 430px) {
+  .create-schedule-container .schedule-group-cards .schedule-card {
+    height: 97px;
+  }
+}
+
+@media (min-width: 475px) {
+  .create-schedule-container .schedule-group-cards .schedule-card {
+    height: 105px;
+  }
+} */
+

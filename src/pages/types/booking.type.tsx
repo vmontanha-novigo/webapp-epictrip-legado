@@ -1,0 +1,20 @@
+export type BookingType = {
+    idBooking: number,
+    idBookingStr: number,
+    sharingNumberBooking: number,
+    codeAccessBooking: string,
+    dateCheckIn: string,
+    dateCheckInStr: string,
+    dateCheckOut: string,
+    dateCheckOutStr: string,
+    condoGateCode: string,
+    homeAccessCode: string,
+    networkName: string,
+    wifiAccessCode: string,
+    locatorName: string,
+    locatorIcon: string,
+    phoneCall: string,
+    phoneEmergency: string,
+    nameBookingTravel: string,
+    extendStayRequest: boolean
+  };

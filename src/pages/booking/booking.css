@@ -1,0 +1,106 @@
+@font-face {
+  font-family: "Avant";
+  src: url("itc-avant-garde-bold.ttf") format("truetype");
+}
+
+.booking-container {
+  min-height: -webkit-fill-available;
+  height: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.booking-container .wrapper {
+  font-family: "Avant", arial !important;
+  padding: 0 21px;
+  position: relative;
+  bottom: 6px;
+  animation: show 0.5s forwards;
+}
+
+.booking-container h1,
+.extend-booking-container h1 {
+  margin-left: 30px;
+  position: relative;
+  bottom: 5px;
+  font-size: 1.5rem;
+  z-index: 1000;
+}
+
+.booking-container .detalhes-reserva .titulo {
+  float: left;
+  font-size: 1.05rem !important;
+  letter-spacing: -0.4px;
+  color: #383838
+}
+
+.booking-container .detalhes-reserva .valor{
+  float: right;
+  color: #383838;
+  font-size: 1.05rem !important;
+  margin-bottom: 6px;
+}
+
+.booking-container .useful .titulo, .booking-container .useful .valor{
+  font-size: 0.9rem;
+}
+
+.booking-container .detalhes-reserva .linha {
+  clear: both;
+  text-align: center;
+}
+
+.booking-container .detalhes-reserva {
+  width: 100%;
+  overflow: auto;
+  border: 2px solid rgb(75, 70, 70);
+  border-radius: 15px;
+  margin: 0 auto;
+  padding: 18px 28px 0;
+  background-color: white;
+  position: relative;
+  z-index: 1;
+}
+
+.booking-container h3,
+.booking-container p,
+.extend-booking-container p,
+.extend-booking-container h3 {
+  color: #383838;
+  font-size: 1.05rem;
+}
+
+.booking-container h3 {
+  margin: 0;
+}
+
+
+.booking-container .checkout {
+  margin-bottom: 11px;
+}
+
+.booking-container .useful-phones {
+  margin-bottom: 10px;
+}
+
+.booking-container .useful-phones h3,
+.booking-container .useful-phones p {
+  font-size: 0.9rem;
+}
+
+.booking-container .margin-bottom {
+  margin-bottom: 10px;
+}
+
+.booking-container section {
+  position: relative;
+  bottom: 10px;
+}
+
+
+@media (max-width: 400px){
+  .booking-container .useful-phones h3,
+  .booking-container .useful-phones p {
+    font-size: 0.88rem;
+  }
+}
