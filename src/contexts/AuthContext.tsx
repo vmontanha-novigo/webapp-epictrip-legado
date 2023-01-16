@@ -6,7 +6,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import api, { userApi } from "../services/api";
+import api from "../services/api";
 // import jsSHA from "jssha";
 
 type LoginParams = {
@@ -96,8 +96,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
           if (Array.isArray(data)) {
             if (data.length) {
               const { statusPassword } = data[0];
+              console.log(data[0])
               if (statusPassword === "1") {
-                const responseCognito = await userApi.post("/auth/login", {
+                const responseCognito = await api.post("/auth/login", {
                   email: email,
                   phone: data[0].phone,
                   password: password,

@@ -12,7 +12,7 @@ import logo from "../../assets/logo.svg";
 import Loader from "../../components/loader";
 import { useAuth } from "../../contexts/AuthContext";
 import { CONFIRMATION_PASSWORD } from "../../routes";
-import { userApi } from "../../services/api";
+import api from "../../services/api";
 import backButton from "../../assets/back-button-blue.png";
 import eyeIcon from "../../assets/eye.png";
 import eyeClosedIcon from "../../assets/eye-closed.png";
@@ -288,13 +288,13 @@ export default function Login() {
     async (data: any) => {
       setLoading(true);
       const dataTemp = { ...data };
-      dataTemp.password = getHash(dataTemp.password);
+      // dataTemp.password = getHash(dataTemp.password);
       dataTemp.confirmation_password = dataTemp.password;
       dataTemp.mobile_phone_number = phoneNumber;
 
       try {
         if (tripGuest) {
-          await userApi.post("/auth/signup", {
+          await api.post("/auth/signup", {
             email: dataTemp.email,
             password: dataTemp.password,
             phone: dataTemp.mobile_phone_number,
@@ -313,7 +313,7 @@ export default function Login() {
             state: { createGuestData },
           });
         } else {
-          await userApi.post("/auth/signup", {
+          await api.post("/auth/signup", {
             email: dataTemp.email,
             password: dataTemp.password,
             phone: dataTemp.mobile_phone_number,

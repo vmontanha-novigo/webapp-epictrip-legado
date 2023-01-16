@@ -1,20 +1,6 @@
 import axios from "axios";
 
-let userApiUrl = "https://a3gls8uqy3.execute-api.us-east-1.amazonaws.com/Dev";
-let backendApiUrl = "https://07o5cpgwx2.execute-api.us-east-1.amazonaws.com/Dev";
-
-let localEnv = window.location.href.startsWith("http://localhost:3000");
-localEnv = false;
-
-if (localEnv) {
-  const mockApi = "http://localhost:3001";
-  userApiUrl = mockApi;
-  backendApiUrl = mockApi;
-}
-
-export const userApi = axios.create({
-  baseURL: userApiUrl,
-});
+let backendApiUrl : string  = String(import.meta.env.VITE_BACKEND_URL);
 
 const api = axios.create({
   baseURL: backendApiUrl,

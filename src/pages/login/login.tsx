@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { HOME_LOGGED, REGISTER } from "../../routes";
-import api, {userApi} from "../../services/api";
+import api from "../../services/api";
 import styled from "@emotion/styled";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTranslation } from "react-i18next";
@@ -221,7 +221,7 @@ export default function Login() {
   }, []);
 
   useEffect(() => {
-    userApi.post("/auth/login", "").catch(() => {});
+    api.post("/auth/login", "").catch(() => {});
   }, []);
 
   const inputPassword = document.getElementById("password");
@@ -269,9 +269,9 @@ export default function Login() {
       }
       //fazer hash da senha se for email e senha
       let passwordHash = password
-      if (email && password) {
-        passwordHash = getHash(password);
-      }
+      // if (email && password) {
+      //   passwordHash = getHash(password);
+      // }
 
       const response = await login({
         email,
@@ -414,7 +414,7 @@ export default function Login() {
             </div>
           );
         })}
-        <img src="https://epic-trip-images.s3.amazonaws.com/icons/MyBooking.png" />
+        <img src="https://epic-trip-images-dev.s3.amazonaws.com/icons/MyBooking.png" />
         <img src={scheduleIcon} />
         <img src={requestsIcon} />
         <img src={addIcon} />

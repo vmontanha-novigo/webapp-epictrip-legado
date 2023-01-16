@@ -12,7 +12,7 @@ import scheduleIcon from "../../assets/schedule.png";
 import addIcon from "../../assets/addbutton.png";
 import "../../global.css";
 import { LOGIN } from "../../routes";
-import api, { userApi } from "../../services/api";
+import api from "../../services/api";
 import { getAllCategories, getCategory } from "../../services/category.service";
 import { Category } from "../types/category.type";
 import "./home2.css";
@@ -31,7 +31,7 @@ export default function Home2() {
   }, []);
 
   useEffect(() => {
-    userApi.post("/auth/login", "").catch(() => {});
+    api.post("/auth/login", "").catch(() => {});
   }, []);
 
   const handleGoToHome = useCallback(() => {
@@ -64,7 +64,7 @@ export default function Home2() {
             </div>
           );
         })}
-        <img src="https://epic-trip-images.s3.amazonaws.com/icons/MyBooking.png" />
+        <img src="https://epic-trip-images-dev.s3.amazonaws.com/icons/MyBooking.png" />
         <img src={scheduleIcon} />
         <img src={requestsIcon} />
         <img src={addIcon} />

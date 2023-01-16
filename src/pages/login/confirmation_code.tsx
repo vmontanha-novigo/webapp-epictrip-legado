@@ -3,7 +3,7 @@ import React, { useCallback, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import { HOME_LOGGED } from "../../routes";
-import api, { userApi } from "../../services/api";
+import api from "../../services/api";
 import * as Yup from "yup";
 import logo from "../../assets/logo.svg";
 import bkgLogin from "../../assets/bkg-login.jpg";
@@ -233,13 +233,13 @@ export default function ConfirmationCode() {
         };
       } else {
         confirmSignUpBody = {
-          email: createGuestData.email,
-          phone: createGuestData.phone,
+          email: createGuestData?.email,
+          phone: createGuestData?.phone,
           validationCode: data.confirmation_code,
         };
       }
       try {
-        await userApi.post("/auth/confirmsignup", confirmSignUpBody);
+        await api.post("/auth/confirmsignup", confirmSignUpBody);
       } catch (error: any) {
         if (error.response.status == 404) {
           addToast({ type: "error", title: t("invalid_code") });
@@ -259,7 +259,7 @@ export default function ConfirmationCode() {
         user = { ...response.data };
       }
 
-      const responseCognito = await userApi.post("/auth/login", {
+      const responseCognito = await api.post("/auth/login", {
         email: user.email,
         phone: user.phone,
         password: user.password,

@@ -116,7 +116,7 @@ export default function HomeLogged() {
                 <Link to="/booking">
               
                     <img
-                      src="https://epic-trip-images.s3.amazonaws.com/icons/MyBooking.png"
+                      src="https://epic-trip-images-dev.s3.amazonaws.com/icons/MyBooking.png"
                       alt="Ícone de booking"
                     />
                 
