@@ -1,5 +1,6 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 import { HOME_LOGGED, REGISTER } from "../../routes";
 import api from "../../services/api";
 import styled from "@emotion/styled";
@@ -210,7 +211,6 @@ export default function Login() {
   const { addToast } = useToast();
   const { login } = useAuth();
   const [categories, setCategories] = useState([] as Category[]);
-  
 
   useEffect(() => {
     getAllCategories().then(setCategories);
@@ -247,83 +247,35 @@ export default function Login() {
     }
   });
 
-  const handleSubmit = useCallback(
-    async (e: any) => {
+  const handleSubmit = async (e: any) =>{
       setLoading(true);
       e.preventDefault();
-      if (!email && !sharingNumber) {
-        addToast({ type: "error", title: t("without_email") });
-        return setLoading(false);
-      }
-      if (!password) {
-        addToast({ type: "error", title: t("without_password") });
-        return setLoading(false);
-      }
-      if (!sharingNumber && !email) {
-        addToast({
-          type: "error",
-          title: t("without_confirmation_code"),
-        });
 
-        return setLoading(false);
-      }
-      //fazer hash da senha se for email e senha
-      let passwordHash = password
-      // if (email && password) {
-      //   passwordHash = getHash(password);
-      // }
+      const formData = {
+        email: email,
+        password: password,
+      };
 
-      const response = await login({
-        email,
-        password: passwordHash,
-        sharingNumber,
-      });
-
-     
-      if (typeof response === "string") {
-        setLoading(false);
-        history.push(HOME_LOGGED);
-        return;
-      } else if (
-        typeof response === "object" &&
-        response.pendingRegister === true &&
-        response.locator === true
-      ) {
-        history.push({
-          pathname: REGISTER,
-          state: { sharingNumber, passwordHash, data: response.data },
-        });
-      } else if (
-        typeof response === "object" &&
-        response.pendingRegister === true &&
-        response.guest === true
-      ) {
-        history.push({
-          pathname: REGISTER,
-          state: { sharingNumber, passwordHash, data: response.data },
-        });
-      } else {
-        setLoading(false);
-        if (
-          typeof response === "object" &&
-          response.error === "invalid_email_or_password"
-        ) {
-          addToast({
-            type: "error",
-            title: t(response.error),
+        try {
+          const response = await axios.post('http://localhost:8082/auth/login', formData, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
           });
-          return;
-        } else {
-          addToast({
-            type: "error",
-            title: t("invalid_sharing_or_password"),
-          });
-          return;
+
+          const token = localStorage.setItem('@MyEpicTrip:token', response.data.idToken);
+
+          if(token === response.data.idToken) {
+            history.push(HOME_LOGGED)
+          }
+
+        } catch (error) {
+          console.error('Erro:', error);
+          // Trate o erro de acordo com suas necessidades
         }
-      }
-    },
-    [email, password, history, sharingNumber, t, addToast]
-  );
+      
+  };
+
   const handleGoToNewAccount = useCallback(() => {
     history.push(REGISTER);
   }, [history]);

@@ -68,7 +68,7 @@ export default function HomeLogged() {
       <main className="main-with-header">
         <div className="subheader">
           <h1>
-            {Object.keys(booking).length ? (
+            {booking && Object.keys(booking).length > 0 ? (
               <>
                 <FaCircle size="8" color="#009cbe" />{" "}
                 {booking.nameBookingTravel}{" "}
@@ -147,13 +147,11 @@ export default function HomeLogged() {
       </main>
 
       <footer>
-        {Object.keys(booking).length ? (
+        {booking && Object.keys(booking).length > 0 ? (
           <>
-            <img
-              src={booking.locatorIcon}
-              alt="Locator Icon"
-              className="logo"
-            />
+            <FaCircle size="8" color="#009cbe" />{" "}
+            {booking.nameBookingTravel}{" "}
+            <FaCircle size="8" color="#009cbe" />
           </>
         ) : (
           ""

@@ -88,7 +88,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       try {
         if (email && !sharingNumber) {
 
-          const { data } = await api.post("/userLogin", {
+          const { data } = await api.post("/auth/login", {
             email,
             password,
           });
