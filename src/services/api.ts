@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let backendApiUrl : string  = String("http://localhost:8082");
+let backendApiUrl : string  = String("http://18.208.212.30:8082");
 
 const api = axios.create({
   baseURL: backendApiUrl,

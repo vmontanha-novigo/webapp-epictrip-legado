@@ -257,7 +257,7 @@ export default function Login() {
       };
 
         try {
-          const response = await axios.post('http://localhost:8082/auth/login', formData, {
+          const response = await axios.post('http://18.208.212.30:8082/auth/login', formData, {
             headers: {
               'Content-Type': 'application/json',
             },
