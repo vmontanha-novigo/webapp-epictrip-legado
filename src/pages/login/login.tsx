@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
-import { HOME_LOGGED, REGISTER } from "../../routes";
+import { HOME, HOME_LOGGED, REGISTER } from "../../routes";
 import api from "../../services/api";
 import styled from "@emotion/styled";
 import { useAuth } from "../../contexts/AuthContext";
@@ -213,16 +213,18 @@ export default function Login() {
   const [categories, setCategories] = useState([] as Category[]);
 
   useEffect(() => {
-    getAllCategories().then(setCategories);
+    if(localStorage.getItem('@MyEpicTrip:token')) {
+      <Redirect to={HOME_LOGGED} />
+    }
   }, []);
 
-  useEffect(() => {
-    api.get('/healthCheck');
-  }, []);
+  // useEffect(() => {
+  //   api.get('/healthCheck');
+  // }, []);
 
-  useEffect(() => {
-    api.post("/auth/login", "").catch(() => {});
-  }, []);
+  // useEffect(() => {
+  //   api.post("/auth/login", "").catch(() => {});
+  // }, []);
 
   const inputPassword = document.getElementById("password");
   const eyeImg = document.getElementById("eye");
@@ -263,22 +265,22 @@ export default function Login() {
             },
           });
 
-          const token = localStorage.setItem('@MyEpicTrip:token', response.data.idToken);
+          localStorage.setItem('@MyEpicTrip:token', response.data.idToken);
 
-          if(token === response.data.idToken) {
+          if(response.status === 200){
             history.push(HOME_LOGGED)
+            return;
           }
 
         } catch (error) {
-          console.error('Erro:', error);
+          if (error) {
+            addToast({ type: "error", title: t("error_occurred") });
+          }
           // Trate o erro de acordo com suas necessidades
         }
       
   };
 
-  const handleGoToNewAccount = useCallback(() => {
-    history.push(REGISTER);
-  }, [history]);
   const handleGoBack = useCallback(() => {
     history.goBack();
   }, [history]);
