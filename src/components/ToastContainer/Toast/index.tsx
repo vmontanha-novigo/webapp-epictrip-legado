@@ -13,7 +13,7 @@ import { animated } from "react-spring";
 
 interface ContainerProps {
   type?: "success" | "error" | "info";
-  hasDescription: number;
+  hasdescription: number;
 }
 
 const toastTypeVariations = {
@@ -109,7 +109,7 @@ const Toast: React.FC<ToastProps> = ({ message, style }) => {
   return (
     <Container
       type={message.type}
-      hasDescription={Number(!!message.description)}
+      hasdescription={Number(!!message.description)}
       style={style}
     >
       {icons[message.type || "info"]}

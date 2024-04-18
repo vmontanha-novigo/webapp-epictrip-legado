@@ -213,10 +213,13 @@ export default function Login() {
   const [categories, setCategories] = useState([] as Category[]);
 
   useEffect(() => {
-    if(localStorage.getItem('@MyEpicTrip:token')) {
+    var token = ''
+    token = localStorage.getItem('@MyEpicTrip:token')
+
+    if(token === '@MyEpicTrip:token') {
       <Redirect to={HOME_LOGGED} />
     }
-  }, []);
+  }, [history]);
 
   // useEffect(() => {
   //   api.get('/healthCheck');
@@ -265,10 +268,12 @@ export default function Login() {
             },
           });
 
-          localStorage.setItem('@MyEpicTrip:token', response.data.idToken);
-
           if(response.status === 200){
-            history.push(HOME_LOGGED)
+            localStorage.setItem('@MyEpicTrip:token', response.data.idToken);
+
+            window.location.reload();
+
+            setLoading(false)
             return;
           }
 
@@ -284,6 +289,8 @@ export default function Login() {
   const handleGoBack = useCallback(() => {
     history.goBack();
   }, [history]);
+
+  
   return (
     <Container>
       <Button onClick={handleGoBack} src={backButton} />
@@ -306,7 +313,7 @@ export default function Login() {
           <FormGroup style={{ position: "relative" }}>
             <Span style={{ position: "absolute" }}>{t("or")}</Span>
           </FormGroup>
-          <FormGroup style={{ marginTop: "12px" }}>
+          {/* <FormGroup style={{ marginTop: "12px" }}>
             <label htmlFor="confirmation_code">{t("sharing_number")}</label>
             <FormControl
               id="confirmation_code"
@@ -314,7 +321,7 @@ export default function Login() {
               disabled={email != ""}
               onChange={(e) => setConfirmationCode(e.target.value)}
             />
-          </FormGroup>
+          </FormGroup> */}
           <PasswordWrapper>
             <FormGroup style={{ marginTop: "12px" }}>
               <label htmlFor="password">{t("password")}</label>
