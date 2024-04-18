@@ -42,7 +42,7 @@ export default function CategoryDetailList(props: any) {
           {/* {selectedCategory.internalTitle} */}
         </h1>
         <div className="requests">
-          {categories.map((category: Category) => {
+          {categories && categories.map((category: Category) => {
             return (
               <div
                 key={category.idCategory}

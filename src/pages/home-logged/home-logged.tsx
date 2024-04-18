@@ -125,7 +125,7 @@ export default function HomeLogged() {
                   </div>
                 </Link>
               </div>
-              {categories.map((category: Category) => {
+              {categories && categories.map((category: Category) => {
                 return (
                   <div
                     key={category.idCategory}
