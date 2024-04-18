@@ -274,7 +274,7 @@ export default function Login() {
 
         } catch (error) {
           if (error) {
-            addToast({ type: "error", title: t("error_occurred") });
+            addToast({ type: "error", title: t("Erro") });
           }
           // Trate o erro de acordo com suas necessidades
         }
