@@ -31,7 +31,7 @@ export default function HomeLogged() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getCategory().then(setCategories);
+    getCategory().then(setCategories).finally(() => console.log(categories));
   }, []);
 
   // useEffect(() => {
@@ -61,6 +61,7 @@ export default function HomeLogged() {
           src={backgroundTopImage}
           alt="Background Image"
           className="planodefundo"
+          onClick={() => console.log(categories)}
           />
         <img src={lineTop} alt="Dividing line" className="line" />
         <img src={logoTop} alt="Logo image" className="logo-top" />

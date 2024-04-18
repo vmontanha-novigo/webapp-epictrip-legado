@@ -9,6 +9,7 @@ import { getBooking } from "../../services/booking.service";
 import { BookingType } from "../types/booking.type";
 import "./booking.css";
 import PageLoader from "../../components/PageLoader/pageloader";
+import axios from "axios";
 
 export default function Booking() {
   const { t } = useTranslation();
@@ -17,6 +18,16 @@ export default function Booking() {
   const [loading, setLoading] = useState(true);
 
   let showExtendStay = user.idUserType === "2"; //is locator 2
+
+  async function getBookingSimple(){
+    const token = localStorage.getItem("@MyEpicTrip:token");
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    }
+    const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
+    console.log(response)
+  }
 
   useEffect(() => {
     getBooking(user.idUser, true)
@@ -39,8 +50,8 @@ export default function Booking() {
           <>
             <div className="wrapper">
 
-              <h2 className="booking-info-title">{t("booking_details")}</h2>
-                  <div className="detalhes-reserva margin-bottom">
+              <h2 className="booking-info-title" onClick={() => getBookingSimple()}>{t("booking_details")}</h2>
+                  {/* <div className="detalhes-reserva margin-bottom">
                     <div className="linha">
                       <div className="titulo"><h3>{t("booking_number")}</h3></div>
                       <div className="valor">
@@ -55,9 +66,9 @@ export default function Booking() {
                       <div className="titulo checkout"><h3>{t("check_out")}</h3></div>
                       <div className="valor">{booking.dateCheckOutStr}</div>
                     </div>
-                  </div>
+                  </div> */}
 
-              {showExtendStay && (
+              {/* {showExtendStay && (
                 <>
                   {booking.extendStayRequest ? (
                     <button className="large-button-disabled" disabled>
@@ -141,14 +152,14 @@ export default function Booking() {
                     <h3>{t("emergency")}</h3> <p>{booking.phoneEmergency}</p>
                   </div>
                 </>
-              )}
+              )} */}
             </div>
           </>
         )}
       </main>
 
       <footer>
-        {Object.keys(booking).length ? (
+        {booking && Object.keys(booking).length ? (
           <>
             <img
               src={booking.locatorIcon}
