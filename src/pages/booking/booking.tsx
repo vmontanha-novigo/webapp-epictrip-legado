@@ -28,6 +28,7 @@ export default function Booking() {
     }
 
     var userId = localStorage.getItem('@MyEpicTrip:user');
+    if(userId)
     setUserId(userId);
     
     // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })

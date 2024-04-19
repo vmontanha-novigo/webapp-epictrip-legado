@@ -213,7 +213,7 @@ export default function Login() {
   const [categories, setCategories] = useState([] as Category[]);
 
   useEffect(() => {
-    var token = ''
+    var token;
     token = localStorage.getItem('@MyEpicTrip:token')
 
     if(token === '@MyEpicTrip:token') {
