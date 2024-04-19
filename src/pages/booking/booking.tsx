@@ -16,6 +16,7 @@ export default function Booking() {
   const { user } = useAuth();
   const [booking, setBooking] = useState<BookingType>({} as BookingType);
   const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState('');
 
   let showExtendStay = user.idUserType === "2"; //is locator 2
 
@@ -25,21 +26,24 @@ export default function Booking() {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     }
+
+    var userId = localStorage.getItem('@MyEpicTrip:user');
+    setUserId(userId);
+    
     // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
     // URL com ID User
-    const response = await axios.get(`http://18.208.212.30:8082/booking/${user.idUser}`,  { headers })
+    const response = await axios.get(`http://18.208.212.30:8082/booking/user/${userId?.toString()}`,  { headers })
 
-    setBooking(response.data)
+    if(response.status === 200) {
+      setLoading(false);
+      return
+    }
 
   }
 
   useEffect(() => {
-    getBooking(user.idUser, true)
-      .then(setBooking)
-      .finally(() => setLoading(false));
-
-      console.log(user)
-  }, [user.idUser]);
+    getBookingSimple();
+  }, [userId]);
 
   return (
     <div className="booking-container page">

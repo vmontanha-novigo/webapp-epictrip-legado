@@ -52,15 +52,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setToken(storage);
     }
   }, []);
-  useEffect(() => {
-    const usr = localStorage.getItem("@MyEpicTrip:user");
-    if (usr) {
-      const usrObj = JSON.parse(usr);
-      if (usrObj) {
-        setUser(usrObj);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   const usr = localStorage.getItem("@MyEpicTrip:user");
+  //   if (usr) {
+  //     const usrObj = JSON.parse(usr);
+  //     if (usrObj) {
+  //       setUser(usrObj);
+  //     }
+  //   }
+  // }, []);
   const updateToken = useCallback((token: string) => {
     localStorage.setItem("@MyEpicTrip:token", token);
     setToken(token);

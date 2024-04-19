@@ -270,6 +270,7 @@ export default function Login() {
 
           if(response.status === 200){
             localStorage.setItem('@MyEpicTrip:token', response.data.idToken);
+            localStorage.setItem('@MyEpicTrip:user', response.data.userId);
 
             window.location.reload();
 
