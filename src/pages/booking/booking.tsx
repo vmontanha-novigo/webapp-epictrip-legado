@@ -26,13 +26,19 @@ export default function Booking() {
       'Content-Type': 'application/json'
     }
     const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
-    console.log(response)
+    // URL com ID User
+    // const response = await axios.get(`http://18.208.212.30:8082/booking${user.idUser}`,  { headers })
+
+    setBooking(response.data)
+
   }
 
   useEffect(() => {
     getBooking(user.idUser, true)
       .then(setBooking)
       .finally(() => setLoading(false));
+
+      console.log(booking)
   }, [user.idUser]);
 
   return (
@@ -40,7 +46,7 @@ export default function Booking() {
       <Header backgroundTopImage={backgroundTopImage} />
 
       <main className="main-with-header">
-        <h1 className="h1-title">{t("my_booking")}</h1>
+        <h1 className="h1-title">{t("My Booking")}</h1>
 
         {loading ? (
           <>
@@ -50,34 +56,34 @@ export default function Booking() {
           <>
             <div className="wrapper">
 
-              <h2 className="booking-info-title" onClick={() => getBookingSimple()}>{t("booking_details")}</h2>
-                  {/* <div className="detalhes-reserva margin-bottom">
+              <h2 className="booking-info-title" onClick={() => getBookingSimple()}>{t("Booking Details")}</h2>
+                  <div className="detalhes-reserva margin-bottom">
                     <div className="linha">
-                      <div className="titulo"><h3>{t("booking_number")}</h3></div>
+                      <div className="titulo"><h3>{t("Booking Number")}</h3></div>
                       <div className="valor">
-                      {booking.idBookingStr}
+                      {booking?.idBookingStr}
                       </div>
                     </div>
                     <div className="linha">
-                      <div className="titulo"><h3>{t("check_in")}</h3></div>
-                      <div className="valor">{booking.dateCheckInStr}</div>
+                      <div className="titulo"><h3>{t("Check In")}</h3></div>
+                      <div className="valor">{booking?.dateCheckInStr}</div>
                     </div>
                     <div className="linha">
-                      <div className="titulo checkout"><h3>{t("check_out")}</h3></div>
-                      <div className="valor">{booking.dateCheckOutStr}</div>
+                      <div className="titulo checkout"><h3>{t("Check Out")}</h3></div>
+                      <div className="valor">{booking?.dateCheckOutStr}</div>
                     </div>
-                  </div> */}
+                  </div>
 
-              {/* {showExtendStay && (
+              {showExtendStay && (
                 <>
                   {booking.extendStayRequest ? (
                     <button className="large-button-disabled" disabled>
-                      {t("extend_stay")}
+                      {t("Extend Stay")}
                     </button>
                   ) : (
                     <Link to="/extend_booking">
                       <button className="large-button">
-                        {t("extend_stay")}
+                        {t("Extend Stay")}
                       </button>
                     </Link>
                   )}
@@ -85,74 +91,74 @@ export default function Booking() {
               )}
               {showExtendStay ? (
                 <section>
-                  <h2 className="booking-info-title ">{t("access_data")}</h2>
+                  <h2 className="booking-info-title ">{t("Access Data")}</h2>
                   <div className="detalhes-reserva margin-bottom">
                     <div className="linha">
-                      <div className="titulo"><h3>{t("condo_gate_code")}:</h3></div>
-                      <div className="valor">{booking.condoGateCode}</div>
+                      <div className="titulo"><h3>{t("Condo Gate Code")}:</h3></div>
+                      <div className="valor">{booking?.condoGateCode}</div>
                     </div>
                     <div className="linha">
-                      <div className="titulo"><h3>{t("home_access_code")}:</h3></div>
-                      <div className="valor">{booking.homeAccessCode}</div>
+                      <div className="titulo"><h3>{t("Home Access Code")}:</h3></div>
+                      <div className="valor">{booking?.homeAccessCode}</div>
                     </div>
                     <div className="linha">
-                      <div className="titulo"><h3>{t("network_name")}:</h3></div>
-                      <div className="valor">{booking.networkName}</div>
+                      <div className="titulo"><h3>{t("Network Name")}:</h3></div>
+                      <div className="valor">{booking?.networkName}</div>
                     </div>
                     <div className="linha">
-                      <div className="titulo"><h3>{t("wifi_access_code")}:</h3></div>
-                      <div className="valor">{booking.wifiAccessCode}</div>
+                      <div className="titulo"><h3>{t("Wifi Access Code")}:</h3></div>
+                      <div className="valor">{booking?.wifiAccessCode}</div>
                     </div>
                   </div>
 
-                  <h2 className="booking-info-title ">{t("sharing_data")}</h2>
+                  <h2 className="booking-info-title ">{t("Sharing Data")}</h2>
                   <div className="detalhes-reserva margin-bottom">
                     <div className="linha">
-                      <div className="titulo"><h3>{t("number")}:</h3></div>
+                      <div className="titulo"><h3>{t("Number")}:</h3></div>
                       <div className="valor">
-                        {booking.sharingNumberBooking}
+                        {booking?.sharingNumberBooking}
                       </div>
                     </div>
                     <div className="linha">
-                      <div className="titulo"><h3>{t("password")}:</h3></div>
-                      <div className="valor">{booking.codeAccessBooking}</div>
+                      <div className="titulo"><h3>{t("Password")}:</h3></div>
+                      <div className="valor">{booking?.codeAccessBooking}</div>
                     </div>
                   </div>
 
-                  <h2 className="booking-info-title">{t("useful_phones")}</h2>
+                  <h2 className="booking-info-title">{t("Useful Phones")}</h2>
                   <div className="booking-info useful-phones">
-                    <h3>{booking.locatorName}</h3> <p>{booking.phoneCall}</p>
-                    <h3>{t("emergency")}</h3> <p>{booking.phoneEmergency}</p>
+                    <h3>{booking?.locatorName}</h3> <p>{booking?.phoneCall}</p>
+                    <h3>{t("Emergency")}</h3> <p>{booking?.phoneEmergency}</p>
                   </div>
                 </section>
               ) : (
                 <>
                   <h2 className="booking-info-title ">{t("access_data")}</h2>
                   <div className="booking-info margin-bottom">
-                    <h3>{t("condo_gate_code")}:</h3>
-                    <p>{booking.condoGateCode}</p>
-                    <h3>{t("home_access_code")}:</h3>
-                    <p>{booking.homeAccessCode}</p>
-                    <h3>{t("network_name")}:</h3>
-                    <p>{booking.networkName}</p>
-                    <h3>{t("wifi_access_code")}:</h3>
-                    <p>{booking.wifiAccessCode}</p>
+                    <h3>{t("Condo Gate Code")}:</h3>
+                    <p>{booking?.condoGateCode}</p>
+                    <h3>{t("Home Access Code")}:</h3>
+                    <p>{booking?.homeAccessCode}</p>
+                    <h3>{t("Network Name")}:</h3>
+                    <p>{booking?.networkName}</p>
+                    <h3>{t("Wifi Access Code")}:</h3>
+                    <p>{booking?.wifiAccessCode}</p>
                   </div>
 
-                  <h2 className="booking-info-title ">{t("sharing_data")}</h2>
+                  <h2 className="booking-info-title ">{t("Sharing Data")}</h2>
                   <div className="booking-info margin-bottom">
-                    <h3>{t("number")}:</h3>{" "}
-                    <p>{booking.sharingNumberBooking}</p>
-                    <h3>{t("password")}:</h3> <p>{booking.codeAccessBooking}</p>
+                    <h3>{t("Number")}:</h3>{" "}
+                    <p>{booking?.sharingNumberBooking}</p>
+                    <h3>{t("Password")}:</h3> <p>{booking?.codeAccessBooking}</p>
                   </div>
 
-                  <h2 className="booking-info-title">{t("useful_phones")}</h2>
+                  <h2 className="booking-info-title">{t("Useful Phones")}</h2>
                   <div className="booking-info useful-phones">
-                    <h3>{booking.locatorName}</h3> <p>{booking.phoneCall}</p>
-                    <h3>{t("emergency")}</h3> <p>{booking.phoneEmergency}</p>
+                    <h3>{booking?.locatorName}</h3> <p>{booking?.phoneCall}</p>
+                    <h3>{t("Emergency")}</h3> <p>{booking?.phoneEmergency}</p>
                   </div>
                 </>
-              )} */}
+              )}
             </div>
           </>
         )}
@@ -162,7 +168,7 @@ export default function Booking() {
         {booking && Object.keys(booking).length ? (
           <>
             <img
-              src={booking.locatorIcon}
+              src={booking?.locatorIcon}
               alt="Locator Icon"
               className="logo"
             />
