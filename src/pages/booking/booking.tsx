@@ -25,9 +25,9 @@ export default function Booking() {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     }
-    const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
+    // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
     // URL com ID User
-    // const response = await axios.get(`http://18.208.212.30:8082/booking${user.idUser}`,  { headers })
+    const response = await axios.get(`http://18.208.212.30:8082/booking/${user.idUser}`,  { headers })
 
     setBooking(response.data)
 
@@ -38,7 +38,7 @@ export default function Booking() {
       .then(setBooking)
       .finally(() => setLoading(false));
 
-      console.log(booking)
+      console.log(user)
   }, [user.idUser]);
 
   return (
