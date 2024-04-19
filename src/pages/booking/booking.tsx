@@ -80,11 +80,11 @@ export default function Booking() {
                     </div>
                     <div className="linha">
                       <div className="titulo"><h3>{t("Check In")}</h3></div>
-                      <div className="valor">{booking?.dateCheckInStr}</div>
+                      <div className="valor">{booking?.dateCheckIn}</div>
                     </div>
                     <div className="linha">
                       <div className="titulo checkout"><h3>{t("Check Out")}</h3></div>
-                      <div className="valor">{booking?.dateCheckOutStr}</div>
+                      <div className="valor">{booking?.dateCheckOut}</div>
                     </div>
                   </div>
 
@@ -147,7 +147,7 @@ export default function Booking() {
                 </section>
               ) : (
                 <>
-                  <h2 className="booking-info-title ">{t("access_data")}</h2>
+                  <h2 className="booking-info-title ">{t("Access Data")}</h2>
                   <div className="booking-info margin-bottom">
                     <h3>{t("Condo Gate Code")}:</h3>
                     <p>{booking?.condoGateCode}</p>

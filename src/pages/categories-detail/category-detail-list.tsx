@@ -7,6 +7,7 @@ import { BookingType } from "../types/booking.type";
 import { Category } from "../types/category.type";
 import { useTranslation } from "react-i18next";
 import "./category-detail-list.css";
+import { getCategory } from "../../services/category.service";
 
 export default function CategoryDetailList(props: any) {
   const history = useHistory();
@@ -18,7 +19,7 @@ export default function CategoryDetailList(props: any) {
   const [booking, setBooking] = useState<BookingType>({} as BookingType);
 
   useEffect(() => {
-    getBooking(idUser).then(setBooking);
+    getCategory(booking.idBooking).then(selectedCategory);
   }, [idUser]);
 
   const handleCategoryClick = useCallback((category: Category) => {
