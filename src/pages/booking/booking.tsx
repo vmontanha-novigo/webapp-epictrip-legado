@@ -5,8 +5,6 @@ import backgroundTopImage from "../../assets/top-mybooking.jpg";
 import Header from "../../components/header";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../global.css";
-import { getBooking } from "../../services/booking.service";
-import { BookingType } from "../types/booking.type";
 import "./booking.css";
 import PageLoader from "../../components/PageLoader/pageloader";
 import axios from "axios";
