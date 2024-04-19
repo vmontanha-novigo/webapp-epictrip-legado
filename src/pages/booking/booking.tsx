@@ -14,7 +14,7 @@ import axios from "axios";
 export default function Booking() {
   const { t } = useTranslation();
   const { user } = useAuth();
-  const [booking, setBooking] = useState<BookingType>({} as BookingType);
+  const [booking, setBooking] = useState("")
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState('');
 
@@ -28,18 +28,28 @@ export default function Booking() {
     }
 
     var userId = localStorage.getItem('@MyEpicTrip:user');
+
+    if(userId)
     setUserId(userId);
     
     // const response = await axios.get('http://192.168.68.140:8082/booking',  { headers })
     // URL com ID User
     const response = await axios.get(`http://192.168.68.140:8082/booking/user/${userId}`,  { headers })
 
+    console.log(response)
+
+    
     if(response.status === 200) {
+
+      setBooking(response.data)
       setLoading(false);
       return
     }
 
+
   }
+
+
 
   useEffect(() => {
     getBookingSimple();
@@ -65,7 +75,7 @@ export default function Booking() {
                     <div className="linha">
                       <div className="titulo"><h3>{t("Booking Number")}</h3></div>
                       <div className="valor">
-                      {booking?.idBookingStr}
+                      {booking?.idBooking}
                       </div>
                     </div>
                     <div className="linha">
