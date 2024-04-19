@@ -24,15 +24,15 @@ export default function Booking() {
     const token = localStorage.getItem("@MyEpicTrip:token");
     const headers = {
       'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json', 
     }
 
     var userId = localStorage.getItem('@MyEpicTrip:user');
     setUserId(userId);
     
-    // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
+    // const response = await axios.get('http://192.168.68.140:8082/booking',  { headers })
     // URL com ID User
-    const response = await axios.get(`http://18.208.212.30:8082/booking/user/${userId?.toString()}`,  { headers })
+    const response = await axios.get(`http://192.168.68.140:8082/booking/user/${userId}`,  { headers })
 
     if(response.status === 200) {
       setLoading(false);
