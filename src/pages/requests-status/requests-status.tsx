@@ -14,6 +14,7 @@ import DoneIcon from "../../assets/done.png";
 import InProgressIcon from "../../assets/in-progress.png";
 import UnrealizedIcon from "../../assets/unrealized.png";
 import PageLoader from "../../components/PageLoader/pageloader";
+import axios from "axios";
 
 import "./requests-status.css";
 
@@ -64,24 +65,52 @@ export default function RequestsStatus() {
     UnrealizedIcon,
   ];
 
-  useEffect(() => {
-    if (booking?.idBooking) {
-      getBooking(idUser)
-      .then(setBooking)
-      .then(() => {
-        const getRequestsUrl = `/request?language=${getCurrentLanguageForBackend()}&idBooking=${
-          booking.idBooking
-        }`;
-        api
-        .get(getRequestsUrl)
-        .then((res) => {
-          setRequests(res.data);
-          
-        }).finally(() => setLoading(false))
-        
-      });
+  async function getBookingAndRequestSimple(){
+    const token = localStorage.getItem("@MyEpicTrip:token");
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json', 
     }
-  }, [idUser, booking]);
+    var userId = localStorage.getItem('@MyEpicTrip:user');
+    // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
+    // URL com ID User
+    const response = await axios.get(`http://18.208.212.30:8082/booking/user/${userId}`,  { headers })
+    let bookingId;
+    if(response.status === 200) {
+      setBooking(response.data)
+      bookingId = response.data.idBooking
+      const responseEvent = await axios.get(`http://18.208.212.30:8082/request/${bookingId}`, { headers })
+      if (responseEvent.status === 200){
+        setRequests(responseEvent.data)
+        setLoading(false)
+        return
+      }
+    }
+
+  }
+
+  useEffect(() => {
+    getBookingAndRequestSimple()
+  }, [])
+
+  // useEffect(() => {
+  //   if (booking?.idBooking) {
+  //     getBooking(idUser)
+  //     .then(setBooking)
+  //     .then(() => {
+  //       const getRequestsUrl = `/request?language=${getCurrentLanguageForBackend()}&idBooking=${
+  //         booking.idBooking
+  //       }`;
+  //       api
+  //       .get(getRequestsUrl)
+  //       .then((res) => {
+  //         setRequests(res.data);
+          
+  //       }).finally(() => setLoading(false))
+        
+  //     });
+  //   }
+  // }, [idUser, booking]);
 
   useEffect(() => {
     getBooking(idUser).then(setBooking);

@@ -14,6 +14,7 @@ import { BookingType } from "../types/booking.type";
 import { getCurrentLanguage } from "../utils/language.utils";
 import { iconByTitle } from "../utils/schedule-list.utils";
 import PageLoader from "../../components/PageLoader/pageloader";
+import axios from "axios";
 
 import "./schedule.css";
 
@@ -46,7 +47,7 @@ export default function Schedule() {
   };
   moment.locale(getCurrentLanguage());
 
-  const [booking, setBooking] = useState<BookingType>({} as BookingType);
+  const [booking, setBooking] = useState();
 
   let availableDates: Array<any> = [];
 
@@ -63,9 +64,33 @@ export default function Schedule() {
     });
   };
 
+  async function getBookingAndEventSimple(){
+    const token = localStorage.getItem("@MyEpicTrip:token");
+    const headers = {
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json', 
+    }
+    var userId = localStorage.getItem('@MyEpicTrip:user');
+    // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
+    // URL com ID User
+    const response = await axios.get(`http://18.208.212.30:8082/booking/user/${userId}`,  { headers })
+    let bookingId;
+    if(response.status === 200) {
+      setBooking(response.data)
+      bookingId = response.data.idBooking
+      const responseEvent = await axios.get(`http://18.208.212.30:8082/schedule/${bookingId}`, { headers })
+      if (responseEvent.status === 200){
+        setEvents(responseEvent.data)
+        setLoading(false)
+        return
+      }
+    }
+
+  }
+
   useEffect(() => {
-    getBooking(idUser).then(setBooking);
-  }, [idUser]);
+    getBookingAndEventSimple()
+  }, []);
 
   const filteredEvents = filterEvents(events);
 
@@ -137,28 +162,27 @@ export default function Schedule() {
         ) : (
           <>
             <section>
-             
-              {filteredEvents.map((event: ScheduleType) => {
+              {events.map((event: ScheduleType) => {
                 let color = getNextColor();
                 return (
-                  <div key={event.idSchedule} className={`event-container ${color}`}>
+                  <div key={event?.idSchedule} className={`event-container ${color}`}>
                     <div className={`event`}>
                       <div className="event-img">
-                        <img src={event.icon} alt="" />
+                        <img src="https://epic-trip-images-dev.s3.amazonaws.com/icons/Soccer.jpg" alt="" />
                       </div>
                       <div className="event-description">
-                        <h2>{t(event.title)}</h2>
-                        <p>{event.description}</p>
+                        <h2>{t(event?.title)}</h2>
+                        <p>{event?.description}</p>
                       </div>
                       <div className={`event-hour ${color}`}>
-                        <span>{event.hour}</span>
+                        <span>{event?.hour}</span>
                       </div>
                     </div>
                   </div>
                 );
               })}
 
-              {filteredEvents.length == 0 ? (
+              {filteredEvents?.length == 0 ? (
                 <div className="no-events">
                   <h1>{t("no_event")}</h1>
                 </div>
@@ -170,7 +194,7 @@ export default function Schedule() {
         )}
       </main>
       <footer>
-        <img src={booking.locatorIcon} alt="Locator Icon" className="logo" />
+        <img src={booking?.locatorIcon} alt="Locator Icon" className="logo" />
       </footer>
     </div>
   );
