@@ -8,11 +8,13 @@ import "../../global.css";
 import "./booking.css";
 import PageLoader from "../../components/PageLoader/pageloader";
 import axios from "axios";
+import { format } from 'date-fns';
+import {ptBR} from  'date-fns/locale/pt-BR'
 
 export default function Booking() {
   const { t } = useTranslation();
   const { user } = useAuth();
-  const [booking, setBooking] = useState("")
+  const [booking, setBooking] = useState<any>("")
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState('');
 
@@ -34,9 +36,8 @@ export default function Booking() {
     // URL com ID User
     const response = await axios.get(`http://192.168.68.140:8082/booking/user/${userId}`,  { headers })
 
-    console.log(response)
+   
 
-    
     if(response.status === 200) {
 
       setBooking(response.data)
@@ -44,15 +45,35 @@ export default function Booking() {
       return
     }
 
-
   }
-
-
 
   useEffect(() => {
     getBookingSimple();
   }, [userId]);
 
+  let maskedDateIn;
+  let maskedDateOut;
+
+  
+  // Verifica se booking existe e se as datas estão definidas
+  if (booking?.dateCheckIn && booking?.dateCheckOut) {
+    const originalDateCheckIn = new Date(booking.dateCheckIn);
+    const originalDateCheckOut = new Date(booking.dateCheckOut);
+  
+    // Verifica se as datas são válidas
+    if (!isNaN(originalDateCheckIn.getTime()) && !isNaN(originalDateCheckOut.getTime())) {
+      maskedDateIn = format(originalDateCheckIn, 'dd/MM/yyyy', { locale: ptBR });
+      maskedDateOut = format(originalDateCheckOut, 'dd/MM/yyyy', { locale: ptBR });
+      
+    } else {
+      console.error('Data inválida');
+      maskedDateIn = "Error - Please Reload the page"
+      maskedDateOut = "Error - Please Reload the page"
+    }
+  } else {
+    console.error('Data de check-in ou check-out não definida');
+  }
+  
   return (
     <div className="booking-container page">
       <Header backgroundTopImage={backgroundTopImage} />
@@ -78,11 +99,11 @@ export default function Booking() {
                     </div>
                     <div className="linha">
                       <div className="titulo"><h3>{t("Check In")}</h3></div>
-                      <div className="valor">{booking?.dateCheckIn}</div>
+                      <div className="valor">{maskedDateIn}</div>
                     </div>
                     <div className="linha">
                       <div className="titulo checkout"><h3>{t("Check Out")}</h3></div>
-                      <div className="valor">{booking?.dateCheckOut}</div>
+                      <div className="valor">{maskedDateOut}</div>
                     </div>
                   </div>
 

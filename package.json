@@ -11,7 +11,7 @@
     "@types/react-numeric-input": "^2.2.4",
     "@types/react-transition-group": "^4.4.4",
     "axios": "^0.21.1",
-    "date-fns": "^2.25.0",
+    "date-fns": "^3.6.0",
     "framer-motion": "^4.1.17",
     "i18next": "^20.4.0",
     "i18next-browser-languagedetector": "^6.1.2",
