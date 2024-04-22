@@ -279,6 +279,7 @@ export default function Login() {
           }
 
         } catch (error) {
+          console.log(error)
           if (error) {
             // addToast({ type: "error", title: t("Erro") });
             alert(error)
