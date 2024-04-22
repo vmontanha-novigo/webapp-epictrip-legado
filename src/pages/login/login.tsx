@@ -280,11 +280,11 @@ export default function Login() {
 
         } catch (error) {
           if (error) {
-            addToast({ type: "error", title: t("Erro") });
+            // addToast({ type: "error", title: t("Erro") });
+            alert(error)
           }
           // Trate o erro de acordo com suas necessidades
         }
-      
   };
 
   const handleGoBack = useCallback(() => {
