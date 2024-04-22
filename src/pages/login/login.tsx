@@ -262,18 +262,18 @@ export default function Login() {
       };
 
         try {
+          alert(window.location.origin)
           const response = await axios.post('http://18.208.212.30:8082/auth/login', formData, {
             headers: {
               'Content-Type': 'application/json',
             },
           });
-
           if(response.status === 200){
             localStorage.setItem('@MyEpicTrip:token', response.data.idToken);
             localStorage.setItem('@MyEpicTrip:user', response.data.userId);
-
+            
             window.location.reload();
-
+            
             setLoading(false)
             return;
           }
