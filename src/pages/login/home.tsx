@@ -77,7 +77,7 @@ export default function Home(): JSX.Element {
       </Logo>
       <Top />
       <Bottom />
-      <Button onClick={handleGoToHome}>{t("enter")}</Button>
+      <Button onClick={handleGoToHome}>{t("Enter")}</Button>
     </Container>
   );
 }
