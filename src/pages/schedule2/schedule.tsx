@@ -47,7 +47,7 @@ export default function Schedule() {
   };
   moment.locale(getCurrentLanguage());
 
-  const [booking, setBooking] = useState();
+  const [booking, setBooking] = useState<any>("");
 
   let availableDates: Array<any> = [];
 
