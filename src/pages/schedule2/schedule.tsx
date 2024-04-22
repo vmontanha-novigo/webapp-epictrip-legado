@@ -184,7 +184,7 @@ export default function Schedule() {
 
               {filteredEvents?.length == 0 ? (
                 <div className="no-events">
-                  <h1>{t("no_event")}</h1>
+                  <h1></h1>
                 </div>
               ) : (
                 ""

@@ -40,7 +40,7 @@ export default function RequestsStatus() {
   } = useAuth();
   const [requests, setRequests] = useState([]);
   const [booking, setBooking] = useState<BookingType>({} as BookingType);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const { t } = useTranslation();
 
@@ -68,8 +68,7 @@ export default function RequestsStatus() {
   async function getBookingAndRequestSimple(){
     const token = localStorage.getItem("@MyEpicTrip:token");
     const headers = {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json', 
+      'Authorization': `Bearer ${token}` 
     }
     var userId = localStorage.getItem('@MyEpicTrip:user');
     // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
@@ -128,49 +127,49 @@ export default function RequestsStatus() {
           </>
         ) : (
           <>
-            {requests.map((request: RequestType) => {
+            {requests?.map((request: RequestType) => {
               let bottomText = "";
               let dot: JSX.Element = <div className="dot" />;
-              const m = moment(request.createDate);
+              const m = moment(request?.createDate);
               let week = m.format("ddd");
               let month = m.format("MMM");
               let dayAndHour = m.format(" D - hh:mma");
               let weekTranslate = t(`${week}`);
               let monthTranslate = t(`${month}`);
 
-              if (request.operatorName) {
-                bottomText = `Operator: ${request.operatorName}`;
-              } else if (request.amount) {
-                bottomText = `Amount: ${request.amount}`;
+              if (request?.operatorName) {
+                bottomText = `Operator: ${request?.operatorName}`;
+              } else if (request?.amount) {
+                bottomText = `Amount: ${request?.amount}`;
               }
 
-              if (request.parentTitle) {
+              if (request?.parentTitle) {
                 dot = <FaCircle size="6" color="#898989" />;
               }
 
-              const status = FROM_TO_STATUS[request.status];
-              const icon = FROM_TO_ICON[request.status];
+              const status = FROM_TO_STATUS[request?.status];
+              const icon = FROM_TO_ICON[request?.status];
 
               return (
                 <>
                 <div className="requests-cards">
                   <div className="requests-icon">
-                    <img src={request.icon} alt="" />
+                    <img src={request?.icon} alt="" />
                   </div>
                   <div className="requests-description">
                     <h2>
-                      <span>{request.parentTitle}</span> {dot}
+                      <span>{request?.parentTitle}</span> {dot}
                       {}{" "}
-                      {!request.parentTitle ? (
-                        <span>{request.title}</span>
+                      {!request?.parentTitle ? (
+                        <span>{request?.title}</span>
                       ) : (
-                        request.title
+                        request?.title
                       )}{" "}
                       <FaCircle size="6" color="#898989" />{" "}
                       {`${weekTranslate}  ${monthTranslate}`}
                       {dayAndHour}
                     </h2>
-                    <p>{request.description}</p>
+                    <p>{request?.description}</p>
                     <p>
                       {" "}
                       {bottomText} Status: {status}

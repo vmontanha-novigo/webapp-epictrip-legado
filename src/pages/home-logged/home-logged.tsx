@@ -88,13 +88,11 @@ export default function HomeLogged() {
             </Link>
           </div>
           <div className="cards-top">
-            <Link to="/requests_status">
-              <img src={requestsIcon} alt="Ícone para fazer uma solicitação" />
+              <img src={requestsIcon} alt="Ícone para fazer uma solicitação" onClick={() => alert("This Function will be released soon")} />
               <p>{t("requests")}</p>
-            </Link>
           </div>
           <div className="cards-top">
-            <img src={rewardsIcon} alt="Ícone para as recompensas" />
+            <img src={rewardsIcon} alt="Ícone para as recompensas" onClick={() => alert("This Function will be released soon")} />
             <p>{t("rewards")}</p>
           </div>
           <div className="cards-top">
