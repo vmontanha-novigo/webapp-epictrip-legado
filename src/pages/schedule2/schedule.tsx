@@ -71,14 +71,14 @@ export default function Schedule() {
       'Content-Type': 'application/json', 
     }
     var userId = localStorage.getItem('@MyEpicTrip:user');
-    // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
+    // const response = await axios.get('https://api.tropicaltecnologia.com.br:8082/booking',  { headers })
     // URL com ID User
-    const response = await axios.get(`http://18.208.212.30:8082/booking/user/${userId}`,  { headers })
+    const response = await axios.get(`https://api.tropicaltecnologia.com.br:8082/booking/user/${userId}`,  { headers })
     let bookingId;
     if(response.status === 200) {
       setBooking(response.data)
       bookingId = response.data.idBooking
-      const responseEvent = await axios.get(`http://18.208.212.30:8082/schedule/${bookingId}`, { headers })
+      const responseEvent = await axios.get(`https://api.tropicaltecnologia.com.br:8082/schedule/${bookingId}`, { headers })
       if (responseEvent.status === 200){
         setEvents(responseEvent.data)
         setLoading(false)

@@ -32,9 +32,9 @@ export default function Booking() {
     if(userId)
     setUserId(userId);
     
-    // const response = await axios.get('http://18.208.212.30:8082/booking',  { headers })
+    // const response = await axios.get('https://api.tropicaltecnologia.com.br:8082/booking',  { headers })
     // URL com ID User
-    const response = await axios.get(`http://18.208.212.30:8082/booking/user/${userId}`,  { headers })
+    const response = await axios.get(`https://api.tropicaltecnologia.com.br:8082/booking/user/${userId}`,  { headers })
 
    
 
