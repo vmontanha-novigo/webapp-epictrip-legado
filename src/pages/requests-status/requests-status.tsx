@@ -71,14 +71,14 @@ export default function RequestsStatus() {
       'Authorization': `Bearer ${token}` 
     }
     var userId = localStorage.getItem('@MyEpicTrip:user');
-    // const response = await axios.get('https://api.tropicaltecnologia.com.br:8082/booking',  { headers })
+    // const response = await axios.get('https://qa-backend.myepictrip.app/booking',  { headers })
     // URL com ID User
-    const response = await axios.get(`https://api.tropicaltecnologia.com.br:8082/booking/user/${userId}`,  { headers })
+    const response = await axios.get(`https://qa-backend.myepictrip.app/booking/user/${userId}`,  { headers })
     let bookingId;
     if(response.status === 200) {
       setBooking(response.data)
       bookingId = response.data.idBooking
-      const responseEvent = await axios.get(`https://api.tropicaltecnologia.com.br:8082/request/${bookingId}`, { headers })
+      const responseEvent = await axios.get(`https://qa-backend.myepictrip.app/request/${bookingId}`, { headers })
       if (responseEvent.status === 200){
         setRequests(responseEvent.data)
         setLoading(false)

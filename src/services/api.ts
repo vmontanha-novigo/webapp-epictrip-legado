@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let backendApiUrl : string  = String("https://api.tropicaltecnologia.com.br:8082");
+let backendApiUrl : string  = String("https://qa-backend.myepictrip.app");
 
 const api = axios.create({
   baseURL: backendApiUrl,

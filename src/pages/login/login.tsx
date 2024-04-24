@@ -263,7 +263,7 @@ export default function Login() {
 
         try {
           alert(window.location.origin)
-          const response = await axios.post('https://api.tropicaltecnologia.com.br:8082/auth/login', formData, {
+          const response = await axios.post('https://qa-backend.myepictrip.app/auth/login', formData, {
             headers: {
               'Content-Type': 'application/json',
             },
