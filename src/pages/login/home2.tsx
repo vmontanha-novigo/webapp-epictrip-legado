@@ -51,7 +51,7 @@ export default function Home2() {
           <img src={logoImg} />{" "}
         </div>
         <button className="button-home clickMeButton" onClick={handleGoToHome}>
-          {t("Enter | 1.4v")}
+          {t("Enter")}
         </button>
       </div>
       <div className="bottom" />
