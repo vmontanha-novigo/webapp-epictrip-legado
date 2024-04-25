@@ -164,7 +164,7 @@ export default function ExtendBooking() {
         )}
       </main>
       <footer>
-        <img src={booking.locatorIcon} alt="Locator Icon" className="logo" />
+        <img src={"https://cdn-icons-png.flaticon.com/512/4519/4519678.png"} alt="Locator Icon" className="logo" />
       </footer>
     </div>
   );

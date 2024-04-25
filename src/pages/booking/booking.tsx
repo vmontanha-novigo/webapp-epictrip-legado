@@ -201,7 +201,7 @@ export default function Booking() {
         {booking && Object.keys(booking).length ? (
           <>
             <img
-              src={booking?.locatorIcon}
+              src={"https://cdn-icons-png.flaticon.com/512/4519/4519678.png"}
               alt="Locator Icon"
               className="logo"
             />

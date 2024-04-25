@@ -168,7 +168,7 @@ export default function Schedule() {
                   <div key={event?.idSchedule} className={`event-container ${color}`}>
                     <div className={`event`}>
                       <div className="event-img">
-                        <img src="https://epic-trip-images-dev.s3.amazonaws.com/icons/Soccer.jpg" alt="" />
+                        <img src="https://t4.ftcdn.net/jpg/01/80/23/57/360_F_180235724_re7asm0odpdBIJDRz5LSNkjtUr6aZUXG.jpg" alt="" />
                       </div>
                       <div className="event-description">
                         <h2>{t(event?.title)}</h2>
