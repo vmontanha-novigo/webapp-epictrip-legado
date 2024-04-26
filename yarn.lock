@@ -900,7 +900,7 @@
 
 "@capacitor/cli@^6.0.0":
   version "6.0.0"
-  resolved "https://registry.npmjs.org/@capacitor/cli/-/cli-6.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@capacitor/cli/-/cli-6.0.0.tgz#78def1dcf8a0addd10039edf32ed15b5a0f0b1aa"
   integrity sha512-6z30P0mr53l0VXPwFjzDVuKIt1991bqUSSfShTT2efWN+rBSGSAH2bPID6qSZornH1n5R5Lh/UHq/aGuW523MQ==
   dependencies:
     "@ionic/cli-framework-output" "^2.2.5"
